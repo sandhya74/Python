@@ -58,7 +58,7 @@ class Demo(APIView):
 
     def display(self,request):
         #import pdb;pdb.set_trace()
-        snip=Materials.objects.get(Material_Id=1001)
+        snip=Materials.objects.get(Material_Id='1001')
         # return render (request,'material.html',{'snip':snip,'form': form,})  
         return render (request,'material.html',{'snip':snip})  
     

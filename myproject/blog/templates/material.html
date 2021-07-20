@@ -15,16 +15,21 @@
     <link href="minimal-table.css" rel="stylesheet" type="text/css">
   </head>
   <style>
-      table,
-    td {
-        border: 1px solid #333;
-    }
+      table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
-    thead,
-    tfoot {
-        background-color: #333;
-        color: #fff;
-    }
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
   </style>
   <body>
     <h1>Table template</h1>
@@ -32,15 +37,47 @@
         
         <tbody>
             <tr>
-                <td>Material_Id</td>
-                <td>Material_Code</td>
-                <td> Material_Descriptions</td>
-                <td>Material_Location</td>
-                <td>Unit_of_Measurement</td>
-                <td>Maximum_Level</td>
-                <td>Minimum_Level</td>
-                <td>Re_order_Level</td>
+                <th>Material_Id</th>
+                <th>Material_Code</th>
+                <th> Material_Descriptions</th>
+                <th>Material_Location</th>
+                <th>Unit_of_Measurement</th>
+                <th>Maximum_Level</th>
+                <th>Minimum_Level</th>
+                <th>Re_order_Level</th>
             </tr>
+            {% for materials in snip %}
+            <tr>
+            
+              <td>{{materials.Material_Code}}</td>
+             
+            </tr>
+            {% endfor %}
+            <!-- <tr>
+              <td>Centro comercial Moctezuma</td>
+              <td>Francisco Chang</td>
+              <td>Mexico</td>
+            </tr>
+            <tr>
+              <td>Ernst Handel</td>
+              <td>Roland Mendel</td>
+              <td>Austria</td>
+            </tr>
+            <tr>
+              <td>Island Trading</td>
+              <td>Helen Bennett</td>
+              <td>UK</td>
+            </tr>
+            <tr>
+              <td>Laughing Bacchus Winecellars</td>
+              <td>Yoshi Tannamuri</td>
+              <td>Canada</td>
+            </tr>
+            <tr>
+              <td>Magazzini Alimentari Riuniti</td>
+              <td>Giovanni Rovelli</td>
+              <td>Italy</td>
+            </tr> -->
         </tbody>
     </table>
 
