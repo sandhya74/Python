@@ -1,0 +1,94 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="application/javascript" src="/static/js/jquery-date.js"></script>
+  <script type="application/javascript" src="/static/js/select2.js"></script>
+  <link href="/static/css/jquery-daterange-ui.css" rel="stylesheet" type="text/css" />
+  <script type="application/javascript" src="/static/js/jquery-daterange-ui.js"></script>
+  <script src="/static/js/jquery.validate.min.js"></script>
+  <script src="/static/js/additional-methods.min.js"></script>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+</head>
+<body>
+
+
+<div class="container">
+  <form  method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <label for="mcode">Material_Code </label>
+    <input type="text" id="mcode" name="material_code" >
+
+    <label for="subject">Material_Descriptions</label>
+    <textarea id="subject" name="material_descriptions" placeholder="Write something.." style="height:200px"></textarea>
+
+    <label for="lname">Material_Location</label>
+    <input type="text" id="lname" name="material_location" >
+
+    <label for="lname">Unit_of_Measurement</label>
+    <input type="text" id="lname" name="unit_of_measurement" >
+
+    <label for="lname">Maximum_Level </label>
+    <input type="text" id="lname" name="maximum_level" >
+
+    <label for="lname">Minimum_Level  </label>
+    <input type="text" id="lname" name="minimum_level" >
+
+    <label for="lname">Re_order_Level </label>
+    <input type="text" id="lname" name="re_order_level" >
+
+    
+
+    <button onclick="myFunction()">submit</button>
+    
+
+
+  </form>
+  
+
+  <script>
+    function myFunction() {
+      alert("hello")
+     var x1 =  document.getElementById("mcode");
+     alert (x1)
+    }
+    </script>
+  
+</div>
+
+</body>
+</html>
