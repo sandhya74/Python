@@ -1,0 +1,86 @@
+<!-- {{snip.Material_Id}} -->
+
+<!-- <form action="/your-name/" method="post">
+    {% csrf_token %}
+    {{ form }} -->
+
+    <!-- {{snip.Material_Id}}
+    <input type="submit" value="Submit">
+</form> -->
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Table template</title>
+    <link href="minimal-table.css" rel="stylesheet" type="text/css">
+  </head>
+  <style>
+      table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+  </style>
+  <body>
+    <h1>Table template</h1>
+    <table>
+        
+        <tbody>
+            <tr>
+                <th>Material_Id</th>
+                <th>Material_Code</th>
+                <th> Material_Descriptions</th>
+                <th>Material_Location</th>
+                <th>Unit_of_Measurement</th>
+                <th>Maximum_Level</th>
+                <th>Minimum_Level</th>
+                <th>Re_order_Level</th>
+            </tr>
+            {% for materials in snip %}
+            <tr>
+            
+              <td>{{materials.Material_Code}}</td>
+             
+            </tr>
+            {% endfor %}
+            <!-- <tr>
+              <td>Centro comercial Moctezuma</td>
+              <td>Francisco Chang</td>
+              <td>Mexico</td>
+            </tr>
+            <tr>
+              <td>Ernst Handel</td>
+              <td>Roland Mendel</td>
+              <td>Austria</td>
+            </tr>
+            <tr>
+              <td>Island Trading</td>
+              <td>Helen Bennett</td>
+              <td>UK</td>
+            </tr>
+            <tr>
+              <td>Laughing Bacchus Winecellars</td>
+              <td>Yoshi Tannamuri</td>
+              <td>Canada</td>
+            </tr>
+            <tr>
+              <td>Magazzini Alimentari Riuniti</td>
+              <td>Giovanni Rovelli</td>
+              <td>Italy</td>
+            </tr> -->
+        </tbody>
+    </table>
+
+
+  </body>
+</html>
