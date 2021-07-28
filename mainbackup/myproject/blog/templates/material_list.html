@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card-body">
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" style="display:none">id</th>
+                <th scope="col">Material_Code</th>
+                <th scope="col">Material_Descriptions</th>
+                <th scope="col">Material_Location</th>
+                <th scope="col">Unit_of_Measurement</th>
+                <th scope="col">Maximum_Level</th>
+                <th scope="col">Minimum_Level</th>
+                <th scope="col">Re_order_Level</th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for materials in material %}
+            <tr>
+
+                
+                <td style="display:none">{{ materials.id}}</td>
+                <td>{{ materials.Material_Code}}</td>
+                <td>{{ materials.Material_Descriptions}}</td>
+                <td>{{ materials.Material_Location }}</td>
+                <td>{{ materials.Unit_of_Measurement}}</td>
+                <td>{{ materials.Maximum_Level}}</td>
+                <td>{{ materials.Minimum_Level}}</td>
+                <td>{{ materials.Re_order_Level}}</td>
+                
+                <td><a type="button" class="btn btn-warning" href="/material_update/{{materials.id}}">Update</a>
+                    <a type="button" class="btn btn-danger" href="/material_delete/{{materials.id}}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a type="button" class="btn btn-success" href="/create_material">Create</a>
+</div>
+{% endblock %}
+
