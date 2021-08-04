@@ -1,0 +1,166 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<style>
+  
+	.contact{
+		padding: 4%;
+		height: 400px;
+	}
+	.col-md-3{
+		background: #ff9b00;
+		padding: 4%;
+		border-top-left-radius: 0.5rem;
+		border-bottom-left-radius: 0.5rem;
+	}
+	.contact-info{
+		margin-top:10%;
+	}
+	.contact-info img{
+		margin-bottom: 15%;
+	}
+	.contact-info h2{
+		margin-bottom: 10%;
+	}
+	.col-md-9{
+		background: #fff;
+		padding: 3%;
+		border-top-right-radius: 0.5rem;
+		border-bottom-right-radius: 0.5rem;
+	}
+	.contact-form label{
+		font-weight:600;
+	}
+	.contact-form button{
+		
+		color: #fff;
+		font-weight: 600;
+		width: 25%;
+	}
+	.contact-form button:focus{
+		box-shadow:none;
+	}
+</style>
+<div class="container contact">
+  {% if mat_id %}
+  <h5 >Update Material</h5>
+   {% else %}
+   <h3 >Create Material</h3>
+   {% endif %}
+      <form   method="POST" enctype= multipart/form-data >
+        {% csrf_token %}
+      
+        <div class="col-md-9">
+        <div class="contact-form">
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="Material_Code">Material Code</label>
+            <div class="col-sm-10">  
+              {% if mat_id %}        
+                  <input type="text" class="form-control" id="Material_Code" value="{{material.Material_Code}}" name="Material_Code">
+              {%  else %}
+              <input type="text" class="form-control" id="Material_Code"  name="Material_Code">
+              {% endif %}    
+            </div>
+          </div>
+            
+          <div class="form-group">
+              <label class="control-label col-sm-4" for="Material_Name" value="">Material Name</label>
+              <div class="col-sm-10">
+                {% if mat_id %}
+              <input type="text" class="form-control"  id="Material_Name" value="{{material.Material_Name}}" name="Material_Name">
+              {% else %}
+              <input type="text" class="form-control"  id="Material_Name"  name="Material_Name">
+              {% endif %} 
+              <!-- <input type="text" class="form-control" id="description"  name="description"> -->
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="control-label col-sm-4" for="Material_Location">Material Location</label>
+              <div class="col-sm-10">
+                {% if mat_id %}
+              <input type="text" class="form-control" id="Material_Location"  value="{{material.Material_Location}}"name="Material_Location">
+              {% else %}
+              <input type="text" class="form-control" id="Material_Location"  name="Material_Location">
+              {% endif %}
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="control-label col-sm-4" for="Unit_of_Measurement">Unit Of Measurement</label>
+              <div class="col-sm-10"> 
+                {% if mat_id %}         
+              <input type="text" class="form-control" id="Unit_of_Measurement" value="{{material.Unit_of_Measurement}}"  name="Unit_of_Measurement">
+                {% else %}
+                <input type="text" class="form-control" id="Unit_of_Measurement"  name="Unit_of_Measurement">
+                {% endif %}
+            </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="control-label col-sm-4" for="Maximum_Level">Maximum Level</label>
+              <div class="col-sm-10">
+                {% if mat_id %}          
+              <input type="text" class="form-control" id="Maximum_Level" value="{{material.Maximum_Level}}" name="Maximum_Level">
+              {% else %}
+              <input type="text" class="form-control" id="Maximum_Level"  name="Maximum_Level">
+              {% endif %}
+              </div>
+            </div>
+          
+            <div class="form-group">
+              <label class="control-label col-sm-4" for="Minimum_Level">Minimum Level</label>
+              <div class="col-sm-10">  
+                {% if mat_id %}        
+              <input type="text" class="form-control" id="Minimum_Level"  value="{{material.Minimum_Level}}" name="Minimum_Level">
+              {% else %}
+              <input type="" class="form-control" id="Minimum_Level"   name="Minimum_Level">
+              {% endif %}
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="control-label col-sm-4" for="Re_order_Level">Re Order Level</label>
+              <div class="col-sm-10">
+                {% if mat_id %}         
+              <input type="text" class="form-control" id="Re_order_Level" value="{{material.Re_order_Level}}" name="Re_order_Level">
+              {% else %}
+              <input type="text" class="form-control" id="Re_order_Level"  name="Re_order_Level">
+                {% endif %}
+
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="control-label col-sm-4" for="Quantity">Quantity</label>
+              <div class="col-sm-10">  
+                {% if mat_id %}        
+              <input type="text" class="form-control" id="Quantity" value="{{material.Quantity}}" name="Quantity">
+              {% else %}
+              <input type="text" class="form-control" id="Quantity"  name="Quantity">
+              {% endif %}
+              </div>
+            </div>
+          </form>
+            
+            <div class="form-group">        
+              <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Submit">
+                <input type="button" value="Cancel" onclick="cancel()"> 
+                    
+
+               
+            </div>
+            </div>
+            <script>
+              function cancel() {
+                
+              window.location.assign(" http://127.0.0.1:8000/material_list")
+        
+        }
+          </script>  
+
+      </div>
+    </div>
+    
