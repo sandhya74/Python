@@ -27,7 +27,7 @@ def create_Material(request):
         form = MaterialsForm(request.POST)
         
         if form.is_valid():
-            data=form.cleaned_data
+            
             form.instance.Material_Code = request.POST['Material_Code']
             form.instance.Material_Descriptions = request.POST['Material_Name']
             form.instance.Material_Location = request.POST['Material_Location']
@@ -36,6 +36,7 @@ def create_Material(request):
             form.instance.Minimum_Level = request.POST['Minimum_Level']
             form.instance.Re_order_Level = request.POST['Re_order_Level']
             form.instance.Quantity=request.POST['Quantity']
+            data=form.cleaned_data['Material_Code']
             form.save()
                 
             return HttpResponseRedirect('/material_list')
@@ -62,18 +63,21 @@ def material_Update(request,id):
 
             try:  
                 form.save() 
-               return HttpResponseRedirect('/material_list')  
+                return HttpResponseRedirect('/material_list')  
                
             except Exception as e: 
                 return Response(status=404)   
     
     else:  
-        import pdb;pdb.set_trace()     
+             
         return render(request,'create_material.html',{'form':form,'mat_id':material.id,'material':material}) 
         
 def material_View(request,id):
-    
+  
     material= Materials.objects.get(id=id)
-    return render(request,"main_list.html",{'material':material}) 
+    transaction=Transact.objects.filter(material_code=id)
+
+    return render(request,"main_list.html",{'material':material,'transaction':transaction}) 
     
     
+

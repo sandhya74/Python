@@ -13,14 +13,14 @@ class Materials(models.Model):
     Quantity=models.IntegerField(null=True,blank=True)
 
 
-class Transaction(models.Model):
+class Transact(models.Model):
     id=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     transaction_type=models.CharField(max_length=20)
-    material_name=models.CharField(max_length=100)
+    material_code=models.ForeignKey(Materials,on_delete=models.CASCADE,default=1)
     date=models.DateField()
     doc_no=models.IntegerField(unique=True)
     received_from=models.CharField(max_length=200,null=True,blank=True)
-    # receipt_no=models.IntegerField()
+    receipt_no=models.IntegerField(default=0)
     issue=models.CharField(max_length=200,null=True,blank=True)
     balance=models.IntegerField()
     verification_date=models.DateField()
