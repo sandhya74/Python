@@ -1,3 +1,5 @@
+
+ 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -48,7 +50,7 @@
    {% else %}
    <h3 style="margin-left: 4%;font-weight: bolder;">Create Material</h3>
    {% endif %}
-      <form   method="POST" enctype= multipart/form-data >
+      <form action=""  method="POST">
         {% csrf_token %}
       
         <div class="col-md-9">
@@ -57,9 +59,9 @@
             <label class="control-label col-sm-4" for="Material_Code">Material Code</label>
             <div class="col-sm-10">  
               {% if mat_id %}        
-                  <input type="text" class="form-control" id="Material_Code" value="{{material.Material_Code}}" name="Material_Code">
+                  <input type="text" class="form-control" id="Material_Code" value="{{material.Material_Code}}" name="Material_Code" pattern="^[a-zA-Z0-9]+$" title="Material_Code should be only Numeric or Alphanumeric " required>
               {%  else %}
-              <input type="text" class="form-control" id="Material_Code"  name="Material_Code">
+              <input type="text" class="form-control" id="Material_Code"  name="Material_Code" pattern="^[a-zA-Z0-9]+$" title="Material_Code should be only Numeric or Alphanumeric " required >
               {% endif %}    
             </div>
           </div>
@@ -68,11 +70,11 @@
               <label class="control-label col-sm-4" for="Material_Name" value="">Material Name</label>
               <div class="col-sm-10">
                 {% if mat_id %}
-              <input type="text" class="form-control"  id="Material_Name" value="{{material.Material_Name}}" name="Material_Name">
+              <input type="text" class="form-control"  id="Material_Name" value="{{material.Material_Name}}" name="Material_Name" pattern="^[a-zA-Z]+$" title="Material_name should be only charactors" required>
               {% else %}
-              <input type="text" class="form-control"  id="Material_Name"  name="Material_Name">
+              <input type="text" class="form-control"  id="Material_Name"  name="Material_Name"  pattern="^[a-zA-Z]+$" title="Material_name should be only charactors" required>
               {% endif %} 
-              <!-- <input type="text" class="form-control" id="description"  name="description"> -->
+             
               </div>
             </div>
             
@@ -80,9 +82,9 @@
               <label class="control-label col-sm-4" for="Material_Location">Material Location</label>
               <div class="col-sm-10">
                 {% if mat_id %}
-              <input type="text" class="form-control" id="Material_Location"  value="{{material.Material_Location}}"name="Material_Location">
+              <input type="text" class="form-control" id="Material_Location"  value="{{material.Material_Location}}"name="Material_Location" pattern="^[a-zA-Z]+$" title="Material_name should be only charactors" required>
               {% else %}
-              <input type="text" class="form-control" id="Material_Location"  name="Material_Location">
+              <input type="text" class="form-control" id="Material_Location"  name="Material_Location" pattern="^[a-zA-Z]+$" title="Material_name should be only charactors" required>
               {% endif %}
               </div>
             </div>
@@ -93,7 +95,7 @@
                 {% if mat_id %}         
               <input type="text" class="form-control" id="Unit_of_Measurement" value="{{material.Unit_of_Measurement}}"  name="Unit_of_Measurement">
                 {% else %}
-                <input type="text" class="form-control" id="Unit_of_Measurement"  name="Unit_of_Measurement">
+                <input type="text" class="form-control" id="Unit_of_Measurement"  name="Unit_of_Measurement" required>
                 {% endif %}
             </div>
             </div>
@@ -102,9 +104,9 @@
               <label class="control-label col-sm-4" for="Maximum_Level">Maximum Level</label>
               <div class="col-sm-10">
                 {% if mat_id %}          
-              <input type="text" class="form-control" id="Maximum_Level" value="{{material.Maximum_Level}}" name="Maximum_Level">
+              <input type="text" class="form-control" id="Maximum_Level" value="{{material.Maximum_Level}}" name="Maximum_Level"  pattern="^[1-9]\d*$" title="Maximum_Level should be only positive numbers" required>
               {% else %}
-              <input type="text" class="form-control" id="Maximum_Level"  name="Maximum_Level">
+              <input type="text" class="form-control" id="Maximum_Level"  name="Maximum_Level" pattern="^[1-9]\d*$" title="Maximum_Level should be only positive numbers" required>
               {% endif %}
               </div>
             </div>
@@ -113,9 +115,9 @@
               <label class="control-label col-sm-4" for="Minimum_Level">Minimum Level</label>
               <div class="col-sm-10">  
                 {% if mat_id %}        
-              <input type="text" class="form-control" id="Minimum_Level"  value="{{material.Minimum_Level}}" name="Minimum_Level">
+              <input type="text" class="form-control" id="Minimum_Level"  value="{{material.Minimum_Level}}" name="Minimum_Level" onblur="getVal()" pattern="^[1-9]\d*$" title="Minimum_Level should be only positive numbers" required>
               {% else %}
-              <input type="" class="form-control" id="Minimum_Level"   name="Minimum_Level">
+              <input type="" class="form-control" id="Minimum_Level"   name="Minimum_Level"  onblur="getVal()" pattern="^[1-9]\d*$" title="Minimum_Level should be only positive numbers" required>
               {% endif %}
               </div>
             </div>
@@ -124,9 +126,9 @@
               <label class="control-label col-sm-4" for="Re_order_Level">Re-Order Level</label>
               <div class="col-sm-10">
                 {% if mat_id %}         
-              <input type="text" class="form-control" id="Re_order_Level" value="{{material.Re_order_Level}}" name="Re_order_Level">
+              <input type="text" class="form-control" id="Re_order_Level" value="{{material.Re_order_Level}}" name="Re_order_Level"  pattern="^[1-9]\d*$" title="Re_order_Level should be only positive numbers" required>
               {% else %}
-              <input type="text" class="form-control" id="Re_order_Level"  name="Re_order_Level">
+              <input type="text" class="form-control" id="Re_order_Level"  name="Re_order_Level"  pattern="^[1-9]\d*$" title="Re_order_Level should be only positive numbers" required>
                 {% endif %}
 
               </div>
@@ -136,9 +138,9 @@
               <label class="control-label col-sm-4" for="Quantity">Quantity</label>
               <div class="col-sm-10">  
                 {% if mat_id %}        
-              <input type="text" class="form-control" id="Quantity" value="{{material.Quantity}}" name="Quantity">
+              <input type="text" class="form-control" id="Quantity" value="{{material.Quantity}}" name="Quantity"  pattern="^[1-9]\d*$" title="Quantity should be only positive numbers" required>
               {% else %}
-              <input type="text" class="form-control" id="Quantity"  name="Quantity">
+              <input type="text" class="form-control" id="Quantity"  name="Quantity"  pattern="^[1-9]\d*$" title="Re_order_Level should be only positive numbers" required>
               {% endif %}
               </div>
             </div>
@@ -146,7 +148,7 @@
             
             <div class="form-group">        
               <div class="col-sm-offset-2 col-sm-10">
-                <input type="submit" value="Submit" onclick="">
+                <input type="submit" value="Submit" >
                 <input type="button" value="Cancel" onclick="cancel()"> 
                     
 
@@ -158,6 +160,19 @@
                 
               window.location.assign(" http://127.0.0.1:8000/material_list")
         
+        }
+        function getVal(){
+         
+          // const val=document.querySelector('input').value;
+          // console.log(val);
+          var max_lev=document.getElementById("Maximum_Level").value;
+          var min_lev=document.getElementById("Minimum_Level").value;
+          alert(min_lev)
+          if (min_lev > max_lev ){
+            alert("Minimum Level should not be greater than Maximum Level")
+            document.getElementById('myForm').min_lev.focus();
+          }
+         
         }
 
           </script>  
