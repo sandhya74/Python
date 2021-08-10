@@ -3,7 +3,7 @@ import uuid
 
 class Materials(models.Model):
     id=models.UUIDField(primary_key=True,default=uuid.uuid4)
-    Material_Code = models.CharField(max_length=255,blank=False,null=False,unique=True)
+    Material_Code = models.CharField(max_length=255,blank=False,null=False)
     Material_Name= models.CharField(max_length=255,blank=True,null=True)
     Material_Location=models.CharField(max_length=255,blank=True,null=True)
     Unit_of_Measurement=models.CharField(max_length=255,null=True, blank=True)  
@@ -12,6 +12,8 @@ class Materials(models.Model):
     Re_order_Level=models.IntegerField(null=True, blank=True)
     Quantity=models.IntegerField(null=True,blank=True)
 
+    def __unicode__(self):
+        return self.Material_Code
 
 class Transact(models.Model):
     id=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
