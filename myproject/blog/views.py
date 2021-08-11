@@ -5,6 +5,10 @@ from rest_framework.response import Response
 from rest_framework import status 
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect,HttpResponse
+import json
+from django.core.serializers.json import DjangoJSONEncoder
+
+from django.utils.safestring import mark_safe
 
 # Create your views here.
 def home_view(request):
@@ -21,12 +25,14 @@ def master_Page(request):
     return render(request,"master_page.html",{'material':material})    
 
 def create_Material(request): 
-   
-      
+
+    import pdb;pdb.set_trace()
+    material=Materials.objects.values_list('Material_Code', flat=True)
+    materials=list(material)
     if request.method == "POST":
         form = MaterialsForm(request.POST)
-        
         if form.is_valid():
+            data=form.cleaned_data
             
             form.instance.Material_Code = request.POST['Material_Code']
             form.instance.Material_Descriptions = request.POST['Material_Name']
@@ -36,16 +42,17 @@ def create_Material(request):
             form.instance.Minimum_Level = request.POST['Minimum_Level']
             form.instance.Re_order_Level = request.POST['Re_order_Level']
             form.instance.Quantity=request.POST['Quantity']
-            data=form.cleaned_data['Material_Code']
+           
             form.save()
                 
             return HttpResponseRedirect('/material_list')
+        
         
         else:
             print(form.errors)
     else:
         form = MaterialsForm()
-        return render(request,'create_material.html',{'form':form})  
+        return render(request,'create_material.html',{'form':form,'materials':materials})  
 
 def material_Update(request,id):  
     

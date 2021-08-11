@@ -44,7 +44,9 @@
 		box-shadow:none;
 	}
 </style>
+
 <div class="container contact">
+ 
   {% if mat_id %}
   <h3 style="margin-left: 4%;font-weight: bolder;">Update Material</h3>
    {% else %}
@@ -52,6 +54,7 @@
    {% endif %}
       <form action=""  method="POST">
         {% csrf_token %}
+        
       
         <div class="col-md-9">
         <div class="contact-form">
@@ -61,8 +64,9 @@
               {% if mat_id %}        
                   <input type="text" class="form-control" id="Material_Code" value="{{material.Material_Code}}" name="Material_Code" onclick="myFun()" pattern="^[a-zA-Z0-9]+$" title="Material_Code should be only Numeric or Alphanumeric " required>
               {%  else %}
-              <input type="text" class="form-control" id="Material_Code"  name="Material_Code" pattern="^[a-zA-Z0-9]+$" title="Material_Code should be only Numeric or Alphanumeric " required >
-              {% endif %}    
+              <input type="text" class="form-control" id="Material_Code"  name="Material_Code"  onchange="validate()" pattern="^[a-zA-Z0-9]+$" title="Material_Code should be only Numeric or Alphanumeric " required >
+             {% endif %} 
+              
             </div>
           </div>
             
@@ -184,6 +188,23 @@
         function myFun(){
           document.getElementById("Material_Code").readOnly = true;
         }
+        function validate(){
+          var mat_code=document.getElementById("Material_Code").value;
+          var val='{{materials}}';
+         
+          value= val.replace(/&#39;/g, '');
+          
+
+          console.log(value);
+          if (mat_code == value){
+          alert("This material_code is already exist")
+          document.getElementById("Material_Code").value="";
+          return false;
+        }
+          else if(mat_code != value){
+            return true;
+          }
+          }
 
           </script>  
 
