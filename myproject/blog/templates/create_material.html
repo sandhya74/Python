@@ -162,7 +162,7 @@
             <script>
               function cancel() {
                 
-              window.location.assign(" http://127.0.0.1:8000/material_list")
+              window.location.assign("/material_list")
         
         }
         function getVal(){
@@ -190,18 +190,28 @@
         }
         function validate(){
           var mat_code=document.getElementById("Material_Code").value;
-          var val='{{materials}}';
-         
-          value= val.replace(/&#39;/g, '');
+          var code=' '+mat_code
+          var projects = "{{materials}}";
+          var project_names1 = projects.replace(/&#39;/g,'');
+          var project = project_names1.slice(1,-1)
+          var uu = project.toString();
+          var tt = uu.split(',')
           
+      console.log(tt)
+          console.log(typeof(tt))
+         
 
-          console.log(value);
-          if (mat_code == value){
-          alert("This material_code is already exist")
-          document.getElementById("Material_Code").value="";
-          return false;
+      
+          
+          if (tt.includes(code)){
+
+            alert("This material_code is already exist")
+            document.getElementById("Material_Code").value="";
+            return false;
+           
+            
         }
-          else if(mat_code != value){
+          else  {
             return true;
           }
           }
@@ -213,4 +223,6 @@
       </div>
     </div>
     
+
+
 

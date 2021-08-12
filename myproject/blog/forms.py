@@ -2,9 +2,11 @@ from django import forms
 from django.forms import ModelForm
 from blog.models import *
 from blog.views import *
-
+from django.core.exceptions import ValidationError
+from django.http import HttpResponseRedirect,HttpResponse
+from django.contrib import messages 
 class MaterialsForm(forms.ModelForm):
-    import pdb;pdb.set_trace()
+    #import pdb;pdb.set_trace()
     class Meta:
         model=Materials
         
@@ -20,14 +22,16 @@ class MaterialsForm(forms.ModelForm):
         'Quantity')
     
         
-    def clean_Material_Code(self):
-        import pdb;pdb.set_trace()
-        material_code = self.cleaned_data.get['Material_Code']
-        for instance in Materials.objects.all():
-            if instance.material_code == material_code:
-                raise form.ValidationError(Material_Code + 'is already created')
-         
-        return material_code
+    # def clean_Material_Code(self):
+    #     import pdb;pdb.set_trace()
+    #     #form = MaterialsForm(request.POST)
+    #     Material_Code = self.cleaned_data.get('Material_Code')
+    #     for instance in Materials.objects.all():
+    #         if instance.Material_Code == Material_Code:
+    #             return forms.ValidationError('This material_code is already created',Material_Code)
+               
+    #     return Material_Code
+        
       
             		
             
@@ -35,3 +39,4 @@ class MaterialsForm(forms.ModelForm):
 
 
 	
+

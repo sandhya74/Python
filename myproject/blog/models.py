@@ -3,7 +3,7 @@ import uuid
 
 class Materials(models.Model):
     id=models.UUIDField(primary_key=True,default=uuid.uuid4)
-    Material_Code = models.CharField(max_length=255,blank=False,null=False)
+    Material_Code = models.CharField(max_length=255,blank=False,null=False,unique=True)
     Material_Name= models.CharField(max_length=255,blank=True,null=True)
     Material_Location=models.CharField(max_length=255,blank=True,null=True)
     Unit_of_Measurement=models.CharField(max_length=255,null=True, blank=True)  
@@ -27,3 +27,4 @@ class Transact(models.Model):
     balance=models.IntegerField()
     verification_date=models.DateField()
     verified_by=models.CharField(max_length=100)    
+

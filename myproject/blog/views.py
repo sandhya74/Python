@@ -26,7 +26,7 @@ def master_Page(request):
 
 def create_Material(request): 
 
-    import pdb;pdb.set_trace()
+    #import pdb;pdb.set_trace()
     material=Materials.objects.values_list('Material_Code', flat=True)
     materials=list(material)
     if request.method == "POST":
@@ -56,6 +56,7 @@ def create_Material(request):
 
 def material_Update(request,id):  
     
+
     material = Materials.objects.get(id=id)
     
     form = MaterialsForm(initial={'Material_Code':material.Material_Code, 'Material_Name': material.Material_Name
@@ -87,4 +88,5 @@ def material_View(request,id):
     return render(request,"main_list.html",{'material':material,'transaction':transaction}) 
     
     
+
 
